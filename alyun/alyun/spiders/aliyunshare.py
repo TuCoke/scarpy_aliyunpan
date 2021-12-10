@@ -38,6 +38,7 @@ class aliyunshareSpider(scrapy.Spider):
                           dont_filter=True)
             # 翻页
             yield Request(url=_prev, headers=self.headers, cookies=self.cookies, callback=self.parse)
+            yield Request(url=_next, headers=self.headers, cookies=self.cookies, callback=self.parse)
 
     def parse_detail(self, response):
         item = response.meta["item"]
