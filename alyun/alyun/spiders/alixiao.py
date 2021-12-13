@@ -13,6 +13,7 @@ class AlixiaoSpider(scrapy.Spider):
         _data = response.json()
         item = AlyunItem()
         item['link_next'] = _data['links']['next']
+        item['response_url'] = response.url
         _next = _data['links']['next']
         for data in _data['data']:
             item['tag'] = data['relationships']['tags']['data'][0]["id"]

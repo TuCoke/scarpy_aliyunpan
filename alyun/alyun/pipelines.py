@@ -16,6 +16,13 @@ class AlyunPipeline:
         _exit_arg = (str(item['del_url']))
         exit_id = _mysql.exit_id(_exit_sql, _exit_arg)
         print(f"exit_id", exit_id)
+        _exit_insert_logs = 'INSERT INTO ddd.Logs(request_id, request_http, request_url)VALUES(%s, %s, %s)'
+        _exit_insert_logs_arg = (str(item['Id']), str(item['response_url']), str(item['del_url']))
+        _log_request_id = _mysql.insert(_exit_insert_logs, _exit_insert_logs_arg)
+        print(f"logs", _log_request_id)
+        # 判断条数如果大于40条 则结束脚本
+        # _select_log_sql = 'select'
+
         if exit_id is None:
             _text = "".join(item['context'])
             _yun_href = ",".join(item['yun_href'])
@@ -28,4 +35,3 @@ class AlyunPipeline:
         else:
             print(f"存在当前数据正在结束", item["Id"])
         return item
-

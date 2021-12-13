@@ -34,8 +34,11 @@ class unilenSpider(scrapy.Spider):
     #         yield scrapy.Request(url=url, headers=headers, cookies=cookies, callback=self.parse)
 
     def parse(self, response):
+
         _data = response.json()
         item = AlyunItem()
+        item['response_url'] = response.url
+        print(f"地址", response.url)
         item['link_next'] = _data['links']['next']
         _next = _data['links']['next']
         for data in _data['data']:

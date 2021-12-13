@@ -23,6 +23,7 @@ class aliyunshareSpider(scrapy.Spider):
         _data = response.json()
         item = AlyunItem()
         item['link_next'] = _data['links']['next']
+        item['response_url'] = response.url
         _prev = _data['links']['prev']
         _next = _data['links']['next']
         for data in _data['data']:

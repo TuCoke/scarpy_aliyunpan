@@ -18,4 +18,5 @@ class AlyunItem(scrapy.Item):
     yun_href = scrapy.Field()
     tag = scrapy.Field()
     create_time = scrapy.Field()
+    response_url = scrapy.Field()
 
